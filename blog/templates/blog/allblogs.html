@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% load staticfiles %}
+  {% load staticfiles %}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -88,9 +87,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-              <a class="nav-link active" aria-current="page" href="#">Twitter</a>
-              <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-              <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+              <a class="nav-link " aria-current="page" href="#">Twitter</a>
+              <a class="nav-link" href="{% static 'picture.jpg'%}">Resume</a>
+              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
           
             </div>
           </div>
@@ -98,56 +97,27 @@
       </nav>
     </header>
 
-    <main>
-      <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Hi, I'm Clifton</h1>
-            <p class="lead text-muted">
-              I am a developer and I love to explore code and passionate about good code
-            </p>
-            <img height="300" src="{% static 'picture.jpg' %}" />
-            <p>
-              <a href="mailto:cliftonho311@gmail.com" class="btn btn-primary my-2">Email Me</a>
-           
-            </p>
-          </div>
-        </div>
-      </section>
+    <div class="container">
+      <main>
+        <h1 class="text-center pt-3">Welcome to the Blog</h1>
+        <br />
+        <br />
+        <h2>Latest Posts</h2>
 
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {%for job in jobs.all%}
-              <div class="card shadow-sm">
-                
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%"  />
-                  <img class="card-img-top"  src="{{job.image.url}}"/>
-                
-
-                <div class="card-body">
-                  <p class="card-text">
-                    {{job.summary}}
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    {% endfor %}
-             
-                  </div>
-                </div>
-              </div>
-            </div>
-
- 
-           
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+        <hr />
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}">
+          <h3>{{blog.title}}</h3>
+        </a>
+        {{blog.pub_date_pretty}}
+        <br />
+        <img class="img-fluid" src="{{blog.image.url}}" height="200" width="200">
+        <br>
+        <p>{{ blog.summary}}</p>
+        
+        {%endfor%}
+      </main>
+    </div>
 
     <footer class="text-muted py-5">
       <div class="container text-center">
